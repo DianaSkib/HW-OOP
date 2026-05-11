@@ -5,7 +5,6 @@ import org.skypro.skyshop.basket.ProductBasket;
 
 public class App {
     public static void main(String[] args) {
-
         Product product1 = new Product("Смартфон", 25000);
         Product product2 = new Product("Ноутбук", 50000);
         Product product3 = new Product("Наушники", 5000);

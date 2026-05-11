@@ -5,7 +5,6 @@ import org.skypro.skyshop.product.Product;
 public class ProductBasket {
     private final Product[] products = new Product[5];
     private int productCount = 0;
-
     public void addProduct(Product product) {
         if (productCount >= products.length) {
             System.out.println("Невозможно добавить продукт");
