@@ -8,7 +8,7 @@ public class ProductBasket {
 
     public void addProduct(Product product) {
         if (productCount >= products.length) {
-            System.out.println("Невозможно добавить продукт");
+            System.out.println("Корзина заполнена. Максимальный размер: " + products.length + " товаров");
             return;
         }
         products[productCount] = product;
@@ -43,7 +43,7 @@ public class ProductBasket {
 
     public boolean containsProduct(String name) {
         for (int i = 0; i < productCount; i++) {
-            if (products[i] != null && products[i].getName().equals(name)) {
+            if (products[i].getName().equals(name)) {
                 return true;
             }
         }
@@ -51,9 +51,6 @@ public class ProductBasket {
     }
 
     public void clear() {
-        for (int i = 0; i < products.length; i++) {
-            products[i] = null;
-        }
         productCount = 0;
     }
 }
