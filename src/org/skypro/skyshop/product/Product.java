@@ -31,6 +31,11 @@ public class Product implements Searchable {
     }
 
     @Override
+    public String getStringRepresentation() {
+        return getName();
+    }
+
+    @Override
     public String toString() {
         return "Product{name='" + name + "', price=" + price + "}";
     }
