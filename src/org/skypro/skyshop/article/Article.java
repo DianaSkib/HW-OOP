@@ -12,19 +12,25 @@ public class Article implements Searchable {
         this.text = text;
     }
 
-    @Override
-    public String getStringRepresentation() {
-        return title + " " + text;
-    }
 
     @Override
     public String getSearchTerm() {
-        return "";
+        return title + " " + text;
     }
 
     @Override
     public String getType() {
         return "ARTICLE";
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return this.title;
+    }
+
+    @Override
+    public String getName() {
+        return title;
     }
 
     @Override

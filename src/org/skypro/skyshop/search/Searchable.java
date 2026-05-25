@@ -6,4 +6,6 @@ public interface Searchable {
     String getType();
 
     String getStringRepresentation();
+
+    String getName();
 }
