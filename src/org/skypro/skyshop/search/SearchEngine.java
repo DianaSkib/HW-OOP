@@ -1,34 +1,23 @@
 package org.skypro.skyshop.search;
+import org.skypro.skyshop.search.Searchable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchEngine {
-    private Searchable[] items;
-    private int count;
+    private final List<Searchable> items = new ArrayList<>();
 
-    public SearchEngine(int size) {
-        this.items = new Searchable[size];
-        this.count = 0;
-    }
 
     public void add(Searchable item) {
-        if (count < items.length) {
-            items[count++] = item;
-        } else {
-            System.out.println("Массив переполнен, невозможно добавить элемент");
-        }
+        items.add(item);
     }
 
-    public Searchable[] search(String query) {
-        Searchable[] results = new Searchable[5];
-        int resultCount = 0;
+public List<Searchable> search(String query) {
+    List<Searchable> results = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
-            Searchable item = items[i];
-            if (item.getSearchTerm().contains(query)) {
-                results[resultCount++] = item;
-                if (resultCount == 5) {
-                    break;
-                }
-            }
+    for (Searchable item : items) {
+        if (item.getSearchTerm().contains(query)) {
+            results.add(item); // Добавляем все подходящие, без ограничения в 5
+        }
         }
         return results;
     }
@@ -40,8 +29,8 @@ public class SearchEngine {
         Searchable bestMatch = null;
         int maxOccurrences = -1;
 
-        for (int i = 0; i < count; i++) {
-            Searchable item = items[i];
+        for (int i = 0; i < items.size(); i++) {
+            Searchable item = items.get(i);
             String searchTerm = item.getSearchTerm();
             int occurrences = countOccurrences(searchTerm, search);
 

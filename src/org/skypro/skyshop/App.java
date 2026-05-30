@@ -6,6 +6,7 @@ import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.search.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -38,6 +39,25 @@ public class App {
 
         ProductBasket basket = new ProductBasket();
 
+
+        System.out.println("\n=== ТЕСТИРОВАНИЕ УДАЛЕНИЯ ИЗ КОРЗИНЫ ===");
+
+
+        List<Product> removed = basket.removeProductsByName("Смартфон");
+        System.out.println("Удаленные продукты: " + removed);
+        System.out.println("Содержимое корзины после удаления:");
+        basket.printContents();
+
+
+        removed = basket.removeProductsByName("Планшет");
+        if (removed.isEmpty()) {
+            System.out.println("Список удаленных продуктов пуст — товара не было в корзине");
+        } else {
+            System.out.println("Удаленные продукты: " + removed);
+        }
+        System.out.println("Содержимое корзины после попытки удаления несуществующего объекта:");
+        basket.printContents();
+
         System.out.println("=== ДЕМОНСТРАЦИЯ РАБОТЫ КОРЗИНЫ С НОВЫМИ ТИПАМИ ТОВАРОВ ===");
 
         basket.addProduct(product1);
@@ -60,7 +80,7 @@ public class App {
 
         System.out.println("\n\n=== ТЕСТИРОВАНИЕ ПОИСКА ===");
 
-        SearchEngine searchEngine = new SearchEngine(10);
+        SearchEngine searchEngine = new SearchEngine();
 
 
         searchEngine.add(new Product("Смартфон Samsung", 25000));
@@ -75,16 +95,16 @@ public class App {
 
 
         System.out.println("Поиск по запросу 'Смартфон':");
-        System.out.println(Arrays.toString(searchEngine.search("Смартфон")));
+        System.out.println(searchEngine.search("Смартфон"));
 
         System.out.println("\nПоиск по запросу 'Ноутбук':");
-        System.out.println(Arrays.toString(searchEngine.search("Ноутбук")));
+        System.out.println(searchEngine.search("Ноутбук"));
 
         System.out.println("\nПоиск по запросу 'ИИ':");
-        System.out.println(Arrays.toString(searchEngine.search("ИИ")));
+        System.out.println(searchEngine.search("ИИ"));
 
         System.out.println("\nПоиск по запросу 'Apple':");
-        System.out.println(Arrays.toString(searchEngine.search("Apple")));
+        System.out.println(searchEngine.search("Apple"));
 
         System.out.println("\n\n=== ТЕСТИРОВАНИЕ МЕТОДА FINDBESTMATCH ===");
 
@@ -122,5 +142,7 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
+
+
     }
 }
